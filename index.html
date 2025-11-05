@@ -6,7 +6,7 @@
 <style>
 /* Tema Novembro Azul + SENAI */
 body {
-  background-image: url('nov-blue01.jpeg'); /* fundo temático */
+  background-image: url('nov-blue01.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -16,7 +16,7 @@ body {
   padding: 0;
 }
 
-/* Container do formulário */
+/* Container */
 form {
   background-color: #ffffff;
   border: 2px solid #0056b3;
@@ -28,7 +28,7 @@ form {
   text-align: left;
 }
 
-/* Cabeçalho e títulos */
+/* Títulos */
 h2 {
   text-align: center;
   color: #0056b3;
@@ -45,7 +45,7 @@ h3 {
   font-weight: bold;
 }
 
-/* Indicador de progresso */
+/* Indicador */
 #progresso {
   text-align: center;
   font-weight: bold;
@@ -85,8 +85,6 @@ button {
 button:hover {
   background-color: #003f80;
 }
-
-/* Botão secundário */
 #souAluno {
   background-color: #0099ff;
 }
@@ -134,19 +132,19 @@ button:hover {
     <h3>🧍 Etapa 1 - Dados Pessoais</h3>
 
     <label>Nome Completo:</label>
-    <input type="text" id="nome" required>
+    <input type="text" id="nome">
 
     <label>Data de Nascimento:</label>
-    <input type="date" id="nascimento" required>
+    <input type="date" id="nascimento">
 
     <label>CPF:</label>
-    <input type="text" id="cpf" required>
+    <input type="text" id="cpf">
 
     <label>RG:</label>
-    <input type="text" id="rg" required>
+    <input type="text" id="rg">
 
     <label>Gênero:</label>
-    <select id="genero" required>
+    <select id="genero">
       <option value="">Selecione...</option>
       <option>Masculino</option>
       <option>Feminino</option>
@@ -154,13 +152,13 @@ button:hover {
     </select>
 
     <label>Estado Civil:</label>
-    <input type="text" id="estadoCivil" required>
+    <input type="text" id="estadoCivil">
 
     <label>Nacionalidade:</label>
-    <input type="text" id="nacionalidade" required>
+    <input type="text" id="nacionalidade">
 
     <label>Naturalidade:</label>
-    <input type="text" id="naturalidade" required>
+    <input type="text" id="naturalidade">
 
     <button type="button" onclick="proximaEtapa(2)">Próximo</button>
     <button type="button" id="souAluno" onclick="window.location.href='https://www.pe.senai.br/sou-aluno/'">
@@ -173,22 +171,22 @@ button:hover {
     <h3>🏠 Etapa 2 - Endereço Completo</h3>
 
     <label>Logradouro:</label>
-    <input type="text" id="logradouro" required>
+    <input type="text" id="logradouro">
 
     <label>Número:</label>
-    <input type="text" id="numero" required>
+    <input type="text" id="numero">
 
     <label>Complemento:</label>
     <input type="text" id="complemento">
 
     <label>Bairro:</label>
-    <input type="text" id="bairro" required>
+    <input type="text" id="bairro">
 
     <label>Cidade:</label>
-    <input type="text" id="cidade" required>
+    <input type="text" id="cidade">
 
     <label>UF:</label>
-    <select id="uf" required>
+    <select id="uf">
       <option value="">Selecione...</option>
       <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
       <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
@@ -200,7 +198,7 @@ button:hover {
     </select>
 
     <label>CEP:</label>
-    <input type="text" id="cep" required>
+    <input type="text" id="cep">
 
     <button type="button" onclick="voltarEtapa(1)">Voltar</button>
     <button type="button" onclick="proximaEtapa(3)">Próximo</button>
@@ -214,13 +212,13 @@ button:hover {
     <h3>📞 Etapa 3 - Contato</h3>
 
     <label>Telefone:</label>
-    <input type="tel" id="telefone" required>
+    <input type="tel" id="telefone">
 
     <label>WhatsApp:</label>
     <input type="tel" id="whatsapp">
 
     <label>E-mail:</label>
-    <input type="email" id="email" required>
+    <input type="email" id="email">
 
     <label>Rede Social:</label>
     <input type="text" id="redeSocial">
@@ -238,6 +236,7 @@ button:hover {
   <h2>✅ Cadastro Concluído</h2>
   <p><strong>Obrigado por se cadastrar!</strong></p>
   <p>O SENAI agradece sua inscrição e deseja sucesso em sua jornada profissional.</p>
+  <button onclick="voltarInicio()">Voltar ao Início</button>
 </div>
 
 <script>
@@ -265,6 +264,16 @@ function enviarFormulario(event) {
   event.preventDefault();
   document.getElementById('cadastroForm').style.display = "none";
   document.getElementById('confirmacao').style.display = "block";
+}
+
+function voltarInicio() {
+  document.getElementById('confirmacao').style.display = "none";
+  document.getElementById('cadastroForm').reset();
+  etapaAtual = 1;
+  document.querySelectorAll('.etapa').forEach(e => e.classList.remove('ativa'));
+  document.getElementById('etapa1').classList.add('ativa');
+  document.getElementById('cadastroForm').style.display = "block";
+  atualizarProgresso();
 }
 </script>
 
